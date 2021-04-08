@@ -23,32 +23,14 @@ log_path = ""
 if pc == "mac":
     # 当前路径mac版
     log_path = os.getcwd() + "/log"
-elif pc == "win":
-    # 当前路径设置为win版
-    log_path = os.getcwd() + "\\log"
-else:
-    raise Exception('print("路径设置出错！")')
-
-# 检索图像及其标签
-for i in range(classes):
-    path = os.path.join(cur_path, 'data/Train', str(i))
-    images = os.listdir(path)
-
-    for a in images:
-        print("当前平台" + pc)
-        print("加载训练图片中...")
-        # windows版
-        if pc == "win":
-            try:
-                image = Image.open(path + '\\' + a)
-                image = image.resize((30, 30))
-                image = np.array(image)
-                data.append(image)
-                labels.append(i)
-            except FileNotFoundError:
-                print("加载训练集图片出错！")
-        # mac版
-        else:
+    print("当前平台" + pc)
+    # 检索图像及其标签
+    for i in range(classes):
+        path = os.path.join(cur_path, 'data/Train', str(i))
+        images = os.listdir(path)
+        print("正在加载第%d类训练图片" % (i + 1))
+        for a in images:
+            # mac版
             try:
                 image = Image.open(path + '/' + a)
                 image = image.resize((30, 30))
@@ -57,6 +39,27 @@ for i in range(classes):
                 labels.append(i)
             except FileNotFoundError:
                 print("加载训练集图片出错！")
+
+elif pc == "win":
+    # 当前路径设置为win版
+    log_path = os.getcwd() + "\\log"
+    print("当前平台" + pc)
+    # 检索图像及其标签
+    for i in range(classes):
+        path = os.path.join(cur_path, 'data/Train', str(i))
+        images = os.listdir(path)
+        print("正在加载第%d类训练图片" % (i + 1))
+        for a in images:
+            try:
+                image = Image.open(path + '\\' + a)
+                image = image.resize((30, 30))
+                image = np.array(image)
+                data.append(image)
+                labels.append(i)
+            except FileNotFoundError:
+                print("加载训练集图片出错！")
+else:
+    raise Exception('print("路径设置出错！")')
 
 # 将列表转换为numpy数组
 data = np.array(data)
