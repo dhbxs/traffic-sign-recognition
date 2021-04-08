@@ -22,15 +22,14 @@ cur_path = os.getcwd()
 
 log_path = ""
 
-try:
-    if pc == "mac":
-        # 当前路径mac版
-        log_path = os.getcwd() + "/log"
-    elif pc == "win":
-        # 当前路径设置为win版
-        log_path = os.getcwd() + "\\log"
-except ValueError:
-    print("路径设置出错！")
+if pc == "mac":
+    # 当前路径mac版
+    log_path = os.getcwd() + "/log"
+elif pc == "win":
+    # 当前路径设置为win版
+    log_path = os.getcwd() + "\\log"
+else:
+    raise Exception('print("路径设置出错！")')
 
 # 检索图像及其标签
 for i in range(classes):
@@ -121,7 +120,7 @@ tensorboard = TensorBoard(log_dir='./log', histogram_freq=1, write_graph=True, w
 
 history = model.fit(X_train, y_train, batch_size=32, epochs=epochs, validation_data=(X_test, y_test),
                     callbacks=[tensorboard])
-model.save("traffic_classifier_me.h5")
+model.save("my_traffic_classifier.h5")
 
 # 绘制图形以确保准确性
 plt.figure(0)
