@@ -47,7 +47,7 @@ for i in range(classes):
                 image = np.array(image)
                 data.append(image)
                 labels.append(i)
-            except IOError:
+            except FileNotFoundError:
                 print("加载训练集图片出错！")
         # mac版
         else:
@@ -57,7 +57,7 @@ for i in range(classes):
                 image = np.array(image)
                 data.append(image)
                 labels.append(i)
-            except IOError:
+            except FileNotFoundError:
                 print("加载训练集图片出错！")
 
 # 将列表转换为numpy数组
