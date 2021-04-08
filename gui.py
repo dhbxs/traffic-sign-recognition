@@ -56,9 +56,9 @@ classes = {1: '限速20km/h',
 top = tk.Tk()
 top.geometry('800x600')
 top.title('交通标志识别')
-top.configure(background='#CDCDCD')
+top.configure(background='#ffffff')
 
-label = Label(top, background='#CDCDCD', font=('Microsoft YaHei', 15, 'bold'))
+label = Label(top, background='#ffffff', font=('Microsoft YaHei', 15, 'bold'))
 sign_image = Label(top)
 
 
@@ -73,12 +73,12 @@ def classify(file_path):
     pred = model.predict_classes([image])[0]
     sign = classes[pred + 1]
     print(sign)
-    label.configure(foreground='#011638', text=sign)
+    label.configure(foreground='#6AAFE6', text=sign)
 
 
 def show_classify_button(file_path):
     classify_b = Button(top, text="识别", command=lambda: classify(file_path), padx=10, pady=5)
-    classify_b.configure(background='#364156', foreground='white', font=('Microsoft YaHei', 10, 'bold'))
+    classify_b.configure(background='#6AAFE6', foreground='#6AAFE6', font=('Microsoft YaHei', 10, 'bold'))
     classify_b.place(relx=0.79, rely=0.46)
 
 
@@ -99,12 +99,12 @@ def upload_image():
 
 
 upload = Button(top, text="上传图像", command=upload_image, padx=10, pady=5)
-upload.configure(background='#364156', foreground='white', font=('Microsoft YaHei', 10, 'bold'))
+upload.configure(background='#6AAFE6', foreground='#6AAFE6', font=('Microsoft YaHei', 10, 'bold'))
 
 upload.pack(side=BOTTOM, pady=50)
 sign_image.pack(side=BOTTOM, expand=True)
 label.pack(side=BOTTOM, expand=True)
 heading = Label(top, text="交通标志识别", pady=20, font=('Microsoft YaHei', 20, 'bold'))
-heading.configure(background='#CDCDCD', foreground='#364156')
+heading.configure(background='#ffffff', foreground='#6AAFE6')
 heading.pack()
 top.mainloop()
