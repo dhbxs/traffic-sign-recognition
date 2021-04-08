@@ -1,13 +1,11 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import cv2
-import tensorflow as tf
 from PIL import Image
 import os
 from sklearn.model_selection import train_test_split
 from keras.utils import to_categorical
-from keras.models import Sequential, load_model
+from keras.models import Sequential
 from keras.layers import Conv2D, MaxPool2D, Dense, Flatten, Dropout
 from sklearn.metrics import accuracy_score
 from keras.callbacks import TensorBoard
@@ -75,20 +73,6 @@ print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
 y_train = to_categorical(y_train, 43)
 y_test = to_categorical(y_test, 43)
 # print(y_test)
-
-# model = Sequential()
-# model.add(Conv2D(filters=32, kernel_size=(5,5), activation='relu', input_shape=X_train.shape[1:]))
-# model.add(Conv2D(filters=32, kernel_size=(5,5), activation='relu'))
-# model.add(MaxPool2D(pool_size=(2, 2)))
-# model.add(Dropout(rate=0.25))
-# model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
-# model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
-# model.add(MaxPool2D(pool_size=(2, 2)))
-# model.add(Dropout(rate=0.25))
-# model.add(Flatten())
-# model.add(Dense(256, activation='relu'))
-# model.add(Dropout(rate=0.5))
-# model.add(Dense(43, activation='softmax'))
 
 # 建立模型
 model = Sequential()
