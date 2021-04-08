@@ -16,13 +16,21 @@ data = []
 labels = []
 classes = 43
 
-# 当前路径windows版
+pc = "mac"  # 根据自己平台设置，mac表示苹果PC，win表示windowsPC
+
 cur_path = os.getcwd()
 
-# log_path = os.getcwd() + "\\log"
+log_path = ""
 
-# 当前路径mac版
-log_path = os.getcwd() + "/log"
+try:
+    if pc == "mac":
+        # 当前路径mac版
+        log_path = os.getcwd() + "/log"
+    elif pc == "win":
+        # 当前路径设置为win版
+        log_path = os.getcwd() + "\\log"
+except ValueError:
+    print("路径设置出错！")
 
 # 检索图像及其标签
 for i in range(classes):
@@ -111,7 +119,8 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 epochs = 11
 tensorboard = TensorBoard(log_dir='./log', histogram_freq=1, write_graph=True, write_images=True, update_freq="epoch")
 
-history = model.fit(X_train, y_train, batch_size=32, epochs=epochs, validation_data=(X_test, y_test), callbacks=[tensorboard])
+history = model.fit(X_train, y_train, batch_size=32, epochs=epochs, validation_data=(X_test, y_test),
+                    callbacks=[tensorboard])
 model.save("traffic_classifier_me.h5")
 
 # 绘制图形以确保准确性
