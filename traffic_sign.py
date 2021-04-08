@@ -37,27 +37,28 @@ for i in range(classes):
     images = os.listdir(path)
 
     for a in images:
-        # print(a)
+        print("当前平台" + pc)
+        print("加载训练图片中...")
         # windows版
-        # try:
-        #     image = Image.open(path + '\\' + a)
-        #     image = image.resize((30, 30))
-        #     image = np.array(image)
-        #     # sim = Image.fromarray(image)
-        #     data.append(image)
-        #     labels.append(i)
-        # except:
-        #     print("Error loading image")
+        if pc == "win":
+            try:
+                image = Image.open(path + '\\' + a)
+                image = image.resize((30, 30))
+                image = np.array(image)
+                data.append(image)
+                labels.append(i)
+            except IOError:
+                print("加载训练集图片出错！")
         # mac版
-        try:
-            image = Image.open(path + '/' + a)
-            image = image.resize((30, 30))
-            image = np.array(image)
-            # sim = Image.fromarray(image)
-            data.append(image)
-            labels.append(i)
-        except:
-            print("Error loading image")
+        else:
+            try:
+                image = Image.open(path + '/' + a)
+                image = image.resize((30, 30))
+                image = np.array(image)
+                data.append(image)
+                labels.append(i)
+            except IOError:
+                print("加载训练集图片出错！")
 
 # 将列表转换为numpy数组
 data = np.array(data)
