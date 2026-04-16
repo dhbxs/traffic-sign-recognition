@@ -1,7 +1,7 @@
 # 交通标志识别系统
 
 本项目是一个基于深度学习的交通标志识别系统，使用卷积神经网络(CNN)对德国交通标志数据集(GTSRB)进行分类识别。
-详细项目文档见: [https://blog.dhbxs.top/archives/4dCtXKfh](https://blog.dhbxs.top/archives/4dCtXKfh)
+详细项目文档见: [https://blog.dhbxs.top/posts/4dCtXKfh](https://blog.dhbxs.top/posts/4dCtXKfh)
 
 ## 项目结构
 
